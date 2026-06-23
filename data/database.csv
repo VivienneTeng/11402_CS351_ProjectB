@@ -1,0 +1,4 @@
+id,title,genre,price,playtime,status
+1001,Palworld,Survival,880.0,45.5,Completed
+1002,Stardew Valley,RPG,398.0,120.0,Active
+1003,Raft,Survival,438.0,12.5,Pending
