@@ -3,17 +3,19 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-# Ensure `src` directory is importable when running `python src/app/main.py`
-ROOT_SRC = Path(__file__).resolve().parents[2]
-if str(ROOT_SRC) not in sys.path:
-    sys.path.insert(0, str(ROOT_SRC))
+# 強制將專案根目錄下的 'src' 資料夾加入搜尋路徑
+# 確保無論從哪裡執行，都能找到 'cli', 'core', 'storage'
+project_root = Path(__file__).resolve().parents[2]
+src_path = project_root / 'src'
+
+if str(src_path) not in sys.path:
+    sys.path.insert(0, str(src_path))
 
 from cli.args import build_parser
 from cli.output_formatter import format_detail, format_message, format_table
 from core.service import GameService, RecordNotFoundError, ValidationError
 from storage.csv_store import CSVStore
 from storage.backup import BackupManager, BackupError
-
 
 def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
